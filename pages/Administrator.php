@@ -84,10 +84,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-							<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>
-							<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>
-							<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>
-							<li><a href='../message/employeeMessage.php'>Employer</a></li>
+							<li><a href='../message/LecturerMessage.php'>Lecturer</a></li>
+							<li><a href='../message/StudentCounselorMessage.php'>Student Counsellor</a></li>
+							<li><a href='../message/RecentGraduateMessage.php'>Recent Graduate</a></li>
+							<li><a href='../message/EmployeeMessage.php'>Employer</a></li>
 							<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li>
                             
                             
@@ -188,10 +188,10 @@
 				
 				<li><a href="removeauserform.php">Remove a Profile</a></li>
 				
-				<li>Contact<ul><li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>
-				<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>
-				<li><a href='../message/employeeMessage.php'>Employer</a></li>
-				<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>
+				<li>Contact<ul><li><a href='../message/StudentCounselorMessage.php'>Student Counsellor</a></li>
+				<li><a href='../message/LecturerMessage.php'>Lecturer</a></li>
+				<li><a href='../message/EmployeeMessage.php'>Employer</a></li>
+				<li><a href='../message/RecentGraduateMessage.php'>Recent Graduate</a></li>
 				<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li></ul></li>
 				
 				<li><a href='../notices/permission.php'>Grand Permission For Publish Notices</a></li>

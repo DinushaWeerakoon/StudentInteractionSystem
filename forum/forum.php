@@ -99,6 +99,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <?php
+							$type=$_COOKIE['userType'];
                             if($type == "Undergraduate"){
                                 echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";
                                 echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
@@ -208,10 +209,10 @@
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="../../js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>

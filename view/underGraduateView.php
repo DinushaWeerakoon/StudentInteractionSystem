@@ -5,7 +5,7 @@
 	$result = mysqli_query($connect,$sql) or die(mysqli_error($connect));
 	/*echo "<table width='60%'><form action='messageAction.php' method='post'>";
 	while($row=mysqli_fetch_row($result)){
-		$sql="SELECT "
+		$sql="SELECT national_id_number where "
 	}
 	while($row = mysqli_fetch_row($result)){
 		echo "<tr>";
