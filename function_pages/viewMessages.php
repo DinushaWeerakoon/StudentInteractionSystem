@@ -82,7 +82,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <?php
-							$type=$_COOKIE['userType'];
 							if($type == "Undergraduate"){
                                 echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";
 								echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
@@ -236,14 +235,14 @@
 					//echo $receiverType;
 					if($receiverType == "Administrator"){
 						$receiverName = "System Administrator";
-						setcookie('receiverType','Administrator');
+						@setcookie('receiverType','Administrator');
 						echo "<tr><td>$receiverName</td><td><form method='post' action='../message/messageAction.php'><button class='btn btn-default' name='receiver' value=$senderId>Reply</button></form></td></tr>";
 					}
 					else if($receiverType == "Lecturer"){
 						$out = mysqli_query($connect,"SELECT name_with_initials FROM lecturer WHERE national_id_number= '$senderId'")or die(mysqli_error($connect)) ;
 						$out2 =  mysqli_fetch_row($out);
 						$receiverName = $out2[0];
-						setcookie("receiverType","Lecturer");
+						@setcookie("receiverType","Lecturer");
 						echo "<tr><td>$receiverName</td><td><form method='post' action='../message/messageAction.php'><button class='btn btn-default' name='receiver' value=$senderId>Reply</button></form></td></tr>";
 					}
 		
@@ -251,14 +250,14 @@
 						$out = mysqli_query($connect,"SELECT name_with_initials FROM lecturer WHERE national_id_number= '$senderId'")or die(mysqli_error($connect)) ;
 						$out2 =  mysqli_fetch_row($out);
 						$receiverName = $out2[0];
-						setcookie("receiverType","Student Counselor");
+						@setcookie("receiverType","Student Counselor");
 						echo "<tr><td>$receiverName</td><td><form method='post' action='../message/messageAction.php'><button class='btn btn-default' name='receiver' value=$senderId>Reply</button></form></td></tr>";
 					}
 					else if($receiverType == "Undergraduate"){
 						$out = mysqli_query($connect,"SELECT first_name,middle_name,surname FROM student WHERE national_id_number='$senderId'")or die(mysqli_error($connect)) ;
 						$out2 =  mysqli_fetch_row($out);
 						$receiverName = $out2[0]." ".$out2[1]." ".$out2[2];
-						setcookie("receiverType","Undergraduate");
+						@setcookie("receiverType","Undergraduate");
 						echo "<tr><td>$receiverName</td><td><form method='post' action='../message/messageAction.php'><button class='btn btn-default' name='receiver' value=$senderId>Reply</button></form></td></tr>";
 					}
 		
@@ -266,7 +265,7 @@
 						$out = mysqli_query($connect,"SELECT name_with_initials FROM recentgraduate WHERE national_id_number='$senderId'")or die(mysqli_error($connect)) ;
 						$out2 =  mysqli_fetch_row($out);
 						$receiverName = $out2[0];
-						setcookie("receiverType","Recent Graduate");
+						@setcookie("receiverType","Recent Graduate");
 						echo "<tr><td>$receiverName</td><td><form method='post' action='../message/messageAction.php'><button class='btn btn-default' name='receiver' value=$senderId>Reply</button></form></td></tr>";
 					}
 		
@@ -274,7 +273,7 @@
 						$out = mysqli_query($connect,"SELECT name FROM employer WHERE national_id_number='$senderId'")or die(mysqli_error($connect)) ;
 						$out2 =  mysqli_fetch_row($out);
 						$receiverName = $out2[0];
-						setcookie("receiverType","Employer");
+						@setcookie("receiverType","Employer");
 						echo "<tr><td>$receiverName</td><td><form method='post' action='../message/messageAction.php'><button class='btn btn-default' name='receiver' value=$senderId>Reply</button></form></td></tr>";
 					}
 		

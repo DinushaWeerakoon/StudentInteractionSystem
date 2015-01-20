@@ -9,27 +9,31 @@
 
 <html>
 	<head>
-		<title>Change Password</title>
+		<title>Remove a User</title>
 		<script language="JavaScript">
 		function validateForm2(){
-			if(document.removeauserform.username1.value=='')
+			if(document.removeauserform.username1.value=="admin"){
+				window.alert("Cannot Delete that User");
+				return false;
+			}
+			if((document.removeauserform.username1.value).trim()=='')
 			{
-			window.alert("Enter the username");
-			return false;
+				window.alert("Enter the username");
+				return false;
 			}
 			
 			
 			
-			if(document.removeauserform.checkusername1.value=='')
+			if((document.removeauserform.checkusername1.value).trim()=='')
 			{
-			window.alert("Re-enter the username to confirm");
-			return false;
+				window.alert("Re-enter the username to confirm");
+				return false;
 			}
 			
 			if(document.removeauserform.checkusername1.value!=document.removeauserform.username1.value)
 			{
-			window.alert("Usernames mismatch!");
-			return false;
+				window.alert("Usernames mismatch!");
+				return false;
 			}
 
 			

@@ -81,7 +81,11 @@
 							}
 							
 							else if($type=="Administrator"){
-								header("Location:Administrator.php");
+								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								
+								echo "<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>";
+								echo "<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li>";
+                                echo "<li><a href='../message/employeeMessage.php'>Employee</a></li>";
+                                echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
 							}
 							else if($type == "Lecturer"){															
 								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								
@@ -159,11 +163,19 @@
 
         <!-- Marketing Icons Section -->
 		<div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">
-                    Notices
-                </h3>
+                <h1 class="page-header">Notices and Announcements 
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="../pages/page.php">Home</a>
+                    </li>
+                    <li class="active">Notices and Announcements</li>
+                </ol>
+            </div>
+        </div>
 				
 				<?php
 					require_once("../Database/database.php");
@@ -220,9 +232,9 @@
 				$name = $row1[0];
 			}
 			
-			echo "<table>
+			echo "<div class='well well-lg'><table>
 					
-					<tr><td colspan=2><b><font color='blue'>Subject</font></b><td></tr>
+					<tr><td colspan=2 rowspan=1><span class='label label-primary'>Subject</span><td></tr>
 					<tr><td colspan=2><b>$subject</b><td></tr>
 					<tr><td>$name</td><td> : </td><td>$date</td></tr>
 					<tr><td colspan=2><b><font color='blue'>Title</font></b><td></tr>
@@ -235,7 +247,7 @@
 								<form action='deleteNotices.php' method='post'>
 								<tr><td colspan=2><button class='btn btn-primary' name='deleting' type='submit' value='$id'>Delete</button><td></tr></form>";
 					}
-			echo	"</table>";
+			echo	"</table></div>";
 			echo "<br>";
 			echo "<br>";
 			
@@ -245,9 +257,7 @@
 	}
 	mysqli_close($connect);
 ?>
-				</div>
-            </div>
-		</div>
+
 		
 		<hr>
 

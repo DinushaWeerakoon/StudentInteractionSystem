@@ -1,430 +1,3 @@
-<?php
-	
-function viewAnotherProfile(){
-
-		require_once("../Database/database.php");
-
-		//watcher data
-		$watcher = $_POST["username"];
-		$resultW=mysqli_query($connect,"SELECT usertype FROM profile WHERE username='$watcher'") or die(mysqli_error($connect));
-		$watchingType = mysqli_fetch_row($resultW); 
-
-		//logged user
-		$name=$_COOKIE["userName"];
-		$userType = $_COOKIE["userType"];
-		echo "<div class='container'>";
-		echo "<br>";
-		if($watchingType[0]=="Undergraduate"){
-
-			
-        	$result1 = mysqli_query($connect,"SELECT * FROM undergraduate where national_id_number='$watcher'") or die("");
-			$row = mysqli_fetch_array($result1);
- 			
-			echo "<b>Student Registration number: </b>". $row['registration_number'];
-			echo "<br/>";
-			
-      
-
-
-
-
-			$result1 = mysqli_query($connect,"SELECT * FROM student where national_id_number='$watcher'") or die("");
-
-			$row = mysqli_fetch_array($result1);
- 
-			echo  "<b>Name: </b>".$row['first_name'];
-			echo " ";
-			echo  $row['middle_name'];
-			echo " ";
-			echo  $row['surname'];
-			echo "<br/>";
-			echo "<b>Gender: </b>". $row['gender'];
-			echo "<br/>";
-			
-			echo "<b>Fixed telephone number: </b>". $row['fixed_telephone_number'];
-			echo "<br/>";
-			echo "<b>Mobile number: </b>". $row['mobile_number'];
-			echo "<br/>";
-			echo "<b>Permenent address: </b>". $row['address_permenent'];
-			echo "<br/>";
-			echo "<b>Temporary address: </b>". $row['address_temporary'];
-			echo "<br/>";
-			echo "<b>Email address: </b>". $row['email_address'];
-			echo "<br/>";
-			echo "<b>Degree: </b>".$row['degree'];
-			echo "<br/>";
-			echo  "<b>Attended School name: </b>".$row['school_attended'];
-			echo "<br/>";
-			echo  "<b>Advanced level stream: </b>".$row['advanced_level_stream'];
-			echo "<br/>";
-		
-		
-
-
-			$result1 = mysqli_query($connect,"SELECT * FROM sport_achievement where national_id_number='$watcher'") or die("");
-		
-			while($row = mysqli_fetch_array($result1)) {
- 
-			echo  "<b>Achievements: </b>".$row['sport_name'];
-			echo " ";
-			echo  $row['date'];
-			echo " ";
-			echo  $row['achievement'];
-			echo "<br/>";
-		}  ///////////
-		
-		
-			$result1 = mysqli_query($connect,"SELECT * FROM extra_curricular_activity_information where national_id_number='$watcher'") or die("");
-		
-			while($row = mysqli_fetch_array($result1)) {
- 
-			echo "<b>Extra-curricular activities: </b>". $row['activity_name'];
-			echo " ";
-			echo  $row['date'];
-			echo " ";
-			echo  $row['description'];
-			echo "<br/>";
-			
-		}  
-		
-		if($userType=="Student Counselor"){
-			
-
-			$result1 = mysqli_query($connect,"SELECT * FROM personal_information where national_id_number='$watcher'") or die("");
-		
-			$row = mysqli_fetch_array($result1);
- 
-			echo  "<b>Father's name: </b>".$row['father_name'];
-			echo "<br/>";
-			echo  "<b>Mother's name: </b>".$row['mother_name'];
-			echo "<br/>";
-			echo  "<b>Guardian's name: </b>".$row['guardian_name'];
-			echo "<br/>";
-			echo  "<b>Father's contact number: </b>".$row['father_contact_number'];
-			echo "<br/>";
-			echo  "<b>Mother's contact number: </b>".$row['mother_contact_number'];
-			echo "<br/>";
-			echo  "<b>Guardian's contact number: </b>".$row['guardian_contact_number'];
-			echo "<br/>";
-			echo  "<b>Father's Occupation: </b>".$row['father_occupation'];
-			echo "<br/>";
-			echo  "<b>Mother's Occupation: </b>".$row['mother_occupation'];
-			echo "<br/>";
-			echo  "<b>Guardian's Occupation: </b>".$row['guardian_occupation'];
-			echo "<br/>";
-			//echo  ""$row['family_income'];
-			echo "<br/>";
-			
-		
-		}
-	} //////////////////
-
-
-
-		if($watchingType[0]=="Recent Graduate"){
-
-			$result1 = mysqli_query($connect,"SELECT * FROM recentgraduate where national_id_number='$watcher'")or die("");
-			while($row = mysqli_fetch_array($result1)) {
- 
-			echo "<b>Name: </b>". $row['name_with_initials'];
-			echo "<br/>";
-			echo "<b>Academic year: </b>". $row['academic_year'];
-			echo "<br/>";
-			echo "<b>Degree: </b>". $row['degree'];
-			echo "<br/>";
-			echo "<b>Contact office number: </b>". $row['contact_number_office'];
-			echo "<br/>";
-			echo  "<b>Contact mobile number: </b>".$row['contact_number_mobile'];
-			echo "<br/>";
-			echo "<b>Email address: </b>". $row['email_address'];
-			echo "<br/>";
-			echo "<br/>";
-			echo  "<b>Internship title: </b>".$row['internship_title'];
-			echo "<br/>";
-			echo  "<b>Internship description: </b>".$row['internship_description'];
-			echo "<br/>";
-			
-			echo  "<b>Internship Organization: </b>".$row['organization'];
-			echo "<br/>";
-			echo  "<b>Internship Organization website: </b>".$row['organization_website'];
-			echo "<br/>";
-			echo "<br>";
-			echo "<b>Current Job title: </b>". $row['job_title'];
-			echo "<br/>";
-			echo  "<b>Current Job description: </b>".$row['job_description'];
-			echo "<br/>";
-		    echo  "<b>Current organization: </b>".$row['current_organization'];
-			echo "<br/>";
-			echo  "<b>Current organization website: </b>".$row['current_organization_website'];
-			echo "<br/>";
-      
-           }
-		
-
-
-
-}////
-
-
-		if($watchingType[0]=="Student Counselor"){
-
-			$result1 = mysqli_query($connect,"SELECT * FROM studentcounselor where national_id_number='$watcher'") or die("");
-			
-			while($row = mysqli_fetch_array($result1)) {
- 
-			echo "<b>Name: </b>". $row['title'];
-			echo " ";
-			echo  $row['name_with_initials'];
-			
-			
-			echo "<br/>";
-			echo  "<b>Designation: </b>".$row['designation'];
-			echo "<br/>";
-			echo  "<b>Contact number of office: </b>".$row['contact_number_office'];
-			echo "<br/>";
-			echo  "<b>Contact number of mobile: </b>". $row['contact_number_mobile'];
-			echo "<br/>";
-			echo  "<b>Email address: </b>". $row['email_address'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Academic Qualifications: </b>";
-			echo "<br/>";
-			echo  "<b>1: </b>". $row['academic_qualification_1'];
-			echo " ";
-			echo  $row['University_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>".$row['academic_qualification_2'];
-			echo " ";
-			echo  $row['University_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>".$row['academic_qualification_3'];
-			echo " ";
-			echo  $row['University_3'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Professional Qualifications</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>".$row['professional_qualification_1'];
-			echo " ";
-			echo  $row['institute_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>".$row['professional_qualification_2'];
-			echo " ";
-			echo  $row['institute_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>".$row['professional_qualification_3'];
-			echo " ";
-			echo  $row['institute_3'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Research Conducted</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>".$row['reserch_conducted_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>".$row['reserch_conducted_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>".$row['reserch_conducted_3'];
-			echo "<br/>";
-			echo  "<b>4: </b>".$row['reserch_conducted_4'];
-			echo "<br/>";
-			echo "<br>";
-			echo "<b> research interests</b>";
-			echo "<br>";
-			echo  "<b>1: </b>".$row['reserch_interest_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>".$row['reserch_interest_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>".$row['reserch_interest_3'];
-			echo "<br/>";
-			echo  "<b>4: </b>".$row['reserch_interest_4'];
-			echo "<br/>";
-			echo  "<b>5: </b>".$row['reserch_interest_5'];
-			echo "<br/>";
-			echo "<br/>";
-			echo " <b>Working Places</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>".$row['working_place_1'];
-			echo " ";
-			echo  $row['designation_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>".$row['working_place_2'];
-			echo " ";
-			echo  $row['designation_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>".$row['working_place_3'];
-			echo " ";
-			echo  $row['designation_3'];
-			echo "<br/>";
-			echo "<b>Subject Code: </b>". $row['subject_code'];
-			echo "<br/>";
-			
-		} 
-	
-
-
-
-
-	}///////
-
-
-		if($watchingType[0]=="Lecturer"){
-
-			$result1 = mysqli_query($connect,"SELECT * FROM lecturer where national_id_number='$watcher'") or die("");
-		
-			while($row = mysqli_fetch_array($result1)) {
-			
-			echo "<br>";
-			echo "<br>";
-			echo "<b>Name: </b>". $row['title'];
-			echo " ";
-			echo  $row['name_with_initials'];
-			
-			
-			echo "<br/>";
-			echo  "<b>Designation: </b>".$row['designation'];
-			echo "<br/>";
-			echo  "<b>Contact number : </b> office: ".$row['contact_number_office'];
-			echo "<br/>";
-			echo  " mobile: ". $row['contact_number_mobile'];
-			echo "<br/>";
-			echo  "<b>Email address: </b>". $row['email_address'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Academic Qualifications: </b>";
-			echo "<br/>";
-			echo  "<b>1: </b>". $row['academic_qualification_1'];
-			echo " ";
-			echo  $row['University_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>". $row['academic_qualification_2'];
-			echo " ";
-			echo  $row['University_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>". $row['academic_qualification_3'];
-			echo " ";
-			echo  $row['University_3'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Professional Qualifications</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>". $row['professional_qualification_1'];
-			echo " ";
-			echo  $row['institute_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>". $row['professional_qualification_2'];
-			echo " ";
-			echo  $row['institute_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>". $row['professional_qualification_3'];
-			echo " ";
-			echo  $row['institute_3'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Research Conducted</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>". $row['reserch_conducted_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>". $row['reserch_conducted_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>". $row['reserch_conducted_3'];
-			echo "<br/>";
-			echo  "<b>4: </b>". $row['reserch_conducted_4'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Research Interests</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>". $row['reserch_interest_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>". $row['reserch_interest_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>". $row['reserch_interest_3'];
-			echo "<br/>";
-			echo  "<b>4: </b>". $row['reserch_interest_4'];
-			echo "<br/>";
-			echo  "<b>5: </b>". $row['reserch_interest_5'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b> Working Places</b>";
-			echo "<br/>";
-			echo  "<b>1: </b>". $row['working_place_1'];
-			echo " ";
-			echo  $row['designation_1'];
-			echo "<br/>";
-			echo  "<b>2: </b>". $row['working_place_2'];
-			echo " ";
-			echo  $row['designation_2'];
-			echo "<br/>";
-			echo  "<b>3: </b>". $row['working_place_3'];
-			echo " ";
-			echo  $row['designation_3'];
-			echo "<br/>";
-			echo "<br/>";
-			echo "<b>Subject Code: </b>". $row['subject_code'];
-			echo "<br/>";
-			
-		} 
-	
-
-
-
-
-	}///////
-
-
-
-		if($watchingType[0]=="Employer"){
-
-			$result1 = mysqli_query($connect,"SELECT * FROM employer where national_id_number='$watcher'")or die("");
-		
-			while($row = mysqli_fetch_array($result1)) {
- 
-			echo  "<b>Name: </b>".$row['name'];
-			echo "<br/>";
-			echo "<br/>";
-			echo  "<b>Company name: </b>".$row['company_name'];
-			echo "<br/>";
-			echo  "<b>Company address: </b>".$row['company_address'];
-			echo "<br/>";
-			echo  "<b>Contact number: </b>".$row['contact_number'];
-			echo "<br/>";
-			echo  "<b>Company email address: </b>".$row['company_email_address'];
-			echo "<br/>";
-			echo  "<b>Company wabsite: </b>".$row['company_website'];
-			echo "<br/>";
-			echo  "<b>About company: </b>".$row['about_company'];
-			echo "<br/>";
-			echo "<br/>";
-			echo  "<b>Designation: </b>".$row['designation'];
-			echo "<br/>";
-			echo  "<b>Contact person name: </b>".$row['contact_person_name'];
-			echo "<br/>";
-			echo  "<b>Contact email address: </b>".$row['contact_email_address'];
-			echo "<br/>";
-			echo  "<b>Contact person address: </b>".$row['contact_person_number'];
-			echo "<br/>";
-			
-		} 
-
-
-
-
-	} /////
-
-
-
-}
-
-viewAnotherProfile();
-
-echo "</div>";
-
-
-
-
-
-
-	
-?>
 <html lang="en">
 
 <head>
@@ -435,7 +8,7 @@ echo "</div>";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Home</title>
+    <title>View a Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -571,7 +144,7 @@ echo "</div>";
                             </li>
 							<li role="presentation" class="divider"></li>
                             <li>
-                                <a href="welcome.html">Logout</a>
+                                <a href="../welcome.html">Logout</a>
                             </li>
                             
                         </ul>
@@ -588,6 +161,591 @@ echo "</div>";
         <!-- /.container -->
     </nav>
 	
+	<?php
+	
+function viewAnotherProfile(){
+
+		require_once("../Database/database.php");
+
+		//watcher data
+		$watcher = $_POST["username"];
+		$resultW=mysqli_query($connect,"SELECT usertype FROM profile WHERE username='$watcher'") or die(mysqli_error($connect));
+		$watchingType = mysqli_fetch_row($resultW); 
+
+		//logged user
+		$name=$_COOKIE["userName"];
+		$userType = $_COOKIE["userType"];
+		echo "<div class='container'>";
+		echo "<br>";
+		if($watchingType[0]=="Undergraduate"){
+
+			
+        	$result1 = mysqli_query($connect,"SELECT * FROM undergraduate where national_id_number='$watcher'") or die("");
+			$row = mysqli_fetch_array($result1);
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Personal Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+ 			
+			echo "<li class='list-group-item'><b>Student Registration number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['registration_number'];
+			echo "</li>";
+			
+      
+
+
+
+
+			$result1 = mysqli_query($connect,"SELECT * FROM student where national_id_number='$watcher'") or die("");
+
+			$row = mysqli_fetch_array($result1);
+ 
+			echo  "<li class='list-group-item'><b>Name&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['first_name'];
+			echo " ";
+			echo  $row['middle_name'];
+			echo " ";
+			echo  $row['surname'];
+			echo "<br/>";
+			echo "<li class='list-group-item'><b>Gender&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['gender'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Degree&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['degree'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Attended School name&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['school_attended'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Advanced level stream&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['advanced_level_stream'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Contact Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			echo "<li class='list-group-item'><b>Fixed telephone number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['fixed_telephone_number'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Mobile number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['mobile_number'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Permenent address&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['address_permenent'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Temporary address&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['address_temporary'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Email address&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['email_address'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+		
+		
+
+
+			$result1 = mysqli_query($connect,"SELECT * FROM sport_achievement where national_id_number='$watcher'") or die("");
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Personal Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+		
+			while($row = mysqli_fetch_array($result1)) {
+ 
+			echo  "<li class='list-group-item'><b>Achievements&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['sport_name'];
+			echo " ";
+			
+			echo " ";
+			echo  $row['achievement'];
+			echo "</li>";
+		}  ///////////
+		
+		
+			$result1 = mysqli_query($connect,"SELECT * FROM extra_curricular_activity_information where national_id_number='$watcher'") or die("");
+		
+			while($row = mysqli_fetch_array($result1)) {
+ 
+			echo "<li class='list-group-item'><b>Extra-curricular activities&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['activity_name'];
+			echo " ";
+			
+			echo " ";
+			echo  $row['description'];
+			echo "</li>";
+			
+			
+		}  
+		
+		echo "</ul></div></div>";
+		
+		
+		if($userType=="Student Counselor"){
+			
+
+			$result1 = mysqli_query($connect,"SELECT * FROM personal_information where national_id_number='$watcher'") or die("");
+		
+			$row = mysqli_fetch_array($result1);
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Parents Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+ 
+			echo  "<li class='list-group-item'><b>Father's name&nbsp;&nbsp;&nbsp&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp&nbsp;&nbsp;</b>".$row['father_name'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Mother's name&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['mother_name'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Guardian's name&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['guardian_name'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Father's contact number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['father_contact_number'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Mother's contact number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['mother_contact_number'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Guardian's contact number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['guardian_contact_number'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Father's Occupation&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['father_occupation'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Mother's Occupation&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['mother_occupation'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Guardian's Occupation&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['guardian_occupation'];
+			echo "</li>";
+			//echo  ""$row['family_income'];
+			echo "</ul></div></div>";
+			
+		
+		}
+	} //////////////////
+
+
+
+		if($watchingType[0]=="Recent Graduate"){
+
+			$result1 = mysqli_query($connect,"SELECT * FROM recentgraduate where national_id_number='$watcher'")or die("");
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Personal Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			while($row = mysqli_fetch_array($result1)) {
+ 
+			echo "<b><li class='list-group-item'>Name&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['name_with_initials'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Academic year&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['academic_year'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Degree&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['degree'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Contact Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			echo "<li class='list-group-item'><b>Contact office number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['contact_number_office'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact mobile number&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['contact_number_mobile'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Email address&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['email_address'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Internship Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			echo  "<li class='list-group-item'><b>Internship title&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['internship_title'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Internship description&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['internship_description'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Internship Organization&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['organization'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Internship Organization website&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['organization_website'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Current Job Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			echo "<li class='list-group-item'><b>Current Job title&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>". $row['job_title'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Current Job description&nbsp;&nbsp;&nbsp&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp&nbsp;&nbsp;</b>".$row['job_description'];
+			echo "</li>";
+		    echo  "<li class='list-group-item'><b>Current organization&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['current_organization'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Current organization website&nbsp;&nbsp;&nbsp&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp&nbsp;&nbsp; </b>".$row['current_organization_website'];
+			echo "</li>";
+			echo "</ul></div></div>";
+           }
+		
+
+
+
+}////
+
+
+		if($watchingType[0]=="Student Counselor"){
+
+			$result1 = mysqli_query($connect,"SELECT * FROM studentcounselor where national_id_number='$watcher'") or die("");
+			
+			
+			
+			while($row = mysqli_fetch_array($result1)) {
+ 
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Current Job Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+ 
+			echo "<li class='list-group-item'><b>Name: </b>". $row['title'];
+			echo " ";
+			echo  $row['name_with_initials'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Designation: </b>".$row['designation'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact number of office: </b>".$row['contact_number_office'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact number of mobile: </b>". $row['contact_number_mobile'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Email address: </b>". $row['email_address'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Academic Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b>Academic Qualifications: </b>";
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>1: </b>". $row['academic_qualification_1'];
+			echo " ";
+			echo  $row['University_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>".$row['academic_qualification_2'];
+			echo " ";
+			echo  $row['University_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>".$row['academic_qualification_3'];
+			echo " ";
+			echo  $row['University_3'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Professional Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<b>Professional Qualifications</b>";
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>1: </b>".$row['professional_qualification_1'];
+			echo " ";
+			echo  $row['institute_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>".$row['professional_qualification_2'];
+			echo " ";
+			echo  $row['institute_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>".$row['professional_qualification_3'];
+			echo " ";
+			echo  $row['institute_3'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Professional Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b>Research Conducted</b>";
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>1: </b>".$row['reserch_conducted_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>".$row['reserch_conducted_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>".$row['reserch_conducted_3'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>4: </b>".$row['reserch_conducted_4'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Professional Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b> research interests</b>";
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>1: </b>".$row['reserch_interest_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>".$row['reserch_interest_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>".$row['reserch_interest_3'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>4: </b>".$row['reserch_interest_4'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>5: </b>".$row['reserch_interest_5'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Professional Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo " <li class='list-group-item'><b>Working Places</b>";
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>1: </b>".$row['working_place_1'];
+			echo " ";
+			echo  $row['designation_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>".$row['working_place_2'];
+			echo " ";
+			echo  $row['designation_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>".$row['working_place_3'];
+			echo " ";
+			echo  $row['designation_3'];
+			echo "</li>";
+			echo "<li class='list-group-item'><b>Subject Code: </b>". $row['subject_code'];
+			echo "</li>";
+			
+			echo "</ul></div></div>";
+		} 
+	
+
+
+
+
+	}///////
+
+
+		if($watchingType[0]=="Lecturer"){
+
+			$result1 = mysqli_query($connect,"SELECT * FROM lecturer where national_id_number='$watcher'") or die("");
+		
+			while($row = mysqli_fetch_array($result1)) {
+				
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Personal Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b>Name: </b>". $row['title'];
+			echo " ";
+			echo  $row['name_with_initials'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Designation: </b>".$row['designation'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Contact Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo  "<li class='list-group-item'><b>Contact number : </b> office: ".$row['contact_number_office'];
+			echo "<br/>";
+			echo  " mobile: ". $row['contact_number_mobile'];
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>Email address: </b>". $row['email_address'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Academic Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b>Academic Qualifications: </b>";
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>1: </b>". $row['academic_qualification_1'];
+			echo " ";
+			echo  $row['University_1'];
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>2: </b>". $row['academic_qualification_2'];
+			echo " ";
+			echo  $row['University_2'];
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>3: </b>". $row['academic_qualification_3'];
+			echo " ";
+			echo  $row['University_3'];
+			echo "</li>";
+			echo "<br/>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Professional Qualifications</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			echo "<li class='list-group-item'><b>Professional Qualifications</b>";
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>1: </b>". $row['professional_qualification_1'];
+			echo " ";
+			echo  $row['institute_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>". $row['professional_qualification_2'];
+			echo " ";
+			echo  $row['institute_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>". $row['professional_qualification_3'];
+			echo " ";
+			echo  $row['institute_3'];
+			echo "</li>";
+			echo "<br/>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Researches Conducted</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<b>Research Conducted</b>";
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>1: </b>". $row['reserch_conducted_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>". $row['reserch_conducted_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>". $row['reserch_conducted_3'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>4: </b>". $row['reserch_conducted_4'];
+			echo "</li>";
+			echo "<br/>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Research Interests</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<b>Research Interests</b>";
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>1: </b>". $row['reserch_interest_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>". $row['reserch_interest_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>". $row['reserch_interest_3'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>4: </b>". $row['reserch_interest_4'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>5: </b>". $row['reserch_interest_5'];
+			echo "</li>";
+			echo "<br/>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Working Places</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b> Working Places</b>";
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>1: </b>". $row['working_place_1'];
+			echo " ";
+			echo  $row['designation_1'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>2: </b>". $row['working_place_2'];
+			echo " ";
+			echo  $row['designation_2'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>3: </b>". $row['working_place_3'];
+			echo " ";
+			echo  $row['designation_3'];
+			echo "</li>";
+			echo "<br/>";
+			echo "</ul></div></div>";
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Subject Codes</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo "<li class='list-group-item'><b>Subject Code: </b>". $row['subject_code'];
+			echo "</li>";
+			echo "</ul></div></div>";
+		} 
+	
+
+
+
+
+	}///////
+
+
+
+		if($watchingType[0]=="Employer"){
+
+			$result1 = mysqli_query($connect,"SELECT * FROM employer where national_id_number='$watcher'")or die("");
+		
+			while($row = mysqli_fetch_array($result1)) {
+				
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Organizational Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+ 
+			echo  "<li class='list-group-item'><b>Name: </b>".$row['name'];
+			echo "</li>";
+			echo "<br/>";
+			echo  "<li class='list-group-item'><b>Company name: </b>".$row['company_name'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Company address: </b>".$row['company_address'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact number: </b>".$row['contact_number'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Company email address: </b>".$row['company_email_address'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Company wabsite: </b>".$row['company_website'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>About company: </b>".$row['about_company'];
+			echo "</li>";
+			echo "</ul></div></div>";
+			
+			echo "<div class='panel panel-primary'>";
+			echo "<div class = 'panel-heading'><h3 class='panel-title'>Contact Information</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo "<ul class='list-group'>";
+			
+			echo  "<li class='list-group-item'><b>Designation: </b>".$row['designation'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact person name: </b>".$row['contact_person_name'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact email address: </b>".$row['contact_email_address'];
+			echo "</li>";
+			echo  "<li class='list-group-item'><b>Contact Number: </b>".$row['contact_person_number'];
+			echo "</li>";
+			echo "</ul></div></div>";
+		} 
+
+
+
+
+	} /////
+
+
+
+}
+
+viewAnotherProfile();
+
+echo "</div>";
+
+
+
+
+
+
+	
+?>
 	
 	<hr>
 
@@ -610,10 +768,10 @@ echo "</div>";
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="../../js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>

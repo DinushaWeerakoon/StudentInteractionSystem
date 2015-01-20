@@ -1,7 +1,7 @@
 <?php
 	//echo "<h1>System Admin ta Message</h1>";
 	// bla bla bla details of the system admin
-	//setcookie("receiverType","SystemAdmin");
+	setcookie("receiverType","SystemAdmin");
 	/*echo "<form action='messageAction.php' method='post'>";
 	echo "<button name='receiver' type= 'submit' value = 'admin'>Contact System Admin</button>";
 	echo "</form>";*/
@@ -94,8 +94,12 @@
                             }
                             
                             else if($type=="Administrator"){
-                                header("Location:Administrator.php");
-                            }
+								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								
+								echo "<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>";
+								echo "<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li>";
+                                echo "<li><a href='../message/employeeMessage.php'>Employee</a></li>";
+                                echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
+							}
                             else if($type == "Lecturer"){                                                           
                                 echo "<li><a href='lecturerMessage.php'>Lecturer</a></li>";                              
                                 echo "<li><a href='recentGraduateMessage.php'>Recent Graduate</a></li>";
@@ -225,7 +229,7 @@
                     Welcome to University of Colombo School of Computing Student Interaction System
                 </h3>
 				<?php
-					setcookie("receiverType","SystemAdmin");
+					//setcookie("receiverType","SystemAdmin");
 					echo "<form action='messageAction.php' method='post'>";
 					echo "<button class='btn btn-primary' name='receiver' type= 'submit' value = 'admin'>Contact System Admin</button>";
 					echo "</form>";

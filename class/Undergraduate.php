@@ -49,6 +49,7 @@ class Undergraduate{
 		$password = $_POST["password"];
 		$usertype = "Undergraduate";
 		
+		if ($username!=null){
 		
 		$check_user=("SELECT username from profile WHERE username='$national_id_number' and username='$username'")or die(mysqli_error());
 		$result=mysqli_query($connect,$check_user);
@@ -105,7 +106,7 @@ class Undergraduate{
 		}
 		
 		
-		
+		}
 		
 		
 	}

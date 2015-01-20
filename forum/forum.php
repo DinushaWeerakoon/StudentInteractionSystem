@@ -1,32 +1,3 @@
-<?php 
-	$userType = $_COOKIE["userType"];
-	if ($userType == "Administrator"){
-		include_once("../class/systemAdminClass.php");
-		$systemAdmin->forumPosts();
-	}
-	else if ($userType == "lecturer"){
-		include_once("../class/lecturerClass.php");
-		$lecturer->forumPosts();
-	}
-	else if ($userType == "Undergraduate"){
-		include_once("../class/underGraduateClass.php");
-		$underGraduate->forumPosts();
-	}
-	else if ($userType == "Recent Graduate"){
-		include_once("../class/recentGraduateClass.php");
-		$recentGraduate->forumPosts();
-	}
-	else if ($userType == "Student Counselor"){
-		include_once("../class/studentCounselorClass.php");
-		$studentCounsellor->forumPosts();
-	}
-	else if ($userType == "Employer"){
-		include_once("../class/employeeClass.php");
-		$employee->forumPosts();
-	}
-	
-?>
-
 <html lang="en">
 
 <head>
@@ -84,7 +55,7 @@
                         <a href="../pages/Find.php">People</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Announcements <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Announcements<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../notices/viewAllNotices.php">View Announcements</a>
@@ -99,7 +70,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <?php
-							$type=$_COOKIE['userType'];
+							$type = $_COOKIE['userType'];
                             if($type == "Undergraduate"){
                                 echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";
                                 echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
@@ -109,8 +80,12 @@
                             }
                             
                             else if($type=="Administrator"){
-                                header("Location:Administrator.php");
-                            }
+								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								
+								echo "<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>";
+								echo "<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li>";
+                                echo "<li><a href='../message/employeeMessage.php'>Employee</a></li>";
+                                echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
+							}
                             else if($type == "Lecturer"){                                                           
                                 echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";                              
                                 echo "<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>";
@@ -186,6 +161,50 @@
         </div>
         <!-- /.container -->
     </nav>
+	
+	  <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Forum
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="../pages/page.php">Home</a>
+                    </li>
+                    <li class="active">Forum</li>
+                </ol>
+            </div>
+        </div>
+	
+	<?php 
+	$userType = $_COOKIE["userType"];
+	if ($userType == "Administrator"){
+		include_once("../class/systemAdminClass.php");
+		$systemAdmin->forumPosts();
+	}
+	else if ($userType == "Lecturer"){
+		include_once("../class/lecturerClass.php");
+		$lecturer->forumPosts();
+	}
+	else if ($userType == "Undergraduate"){
+		include_once("../class/underGraduateClass.php");
+		$underGraduate->forumPosts();
+	}
+	else if ($userType == "Recent Graduate"){
+		include_once("../class/recentGraduateClass.php");
+		$recentGraduate->forumPosts();
+	}
+	else if ($userType == "Student Counselor"){
+		include_once("../class/studentCounselorClass.php");
+		$studentCounsellor->forumPosts();
+	}
+	else if ($userType == "Employer"){
+		include_once("../class/employeeClass.php");
+		$employee->forumPosts();
+	}
+	
+?>
 	
 	
 	<hr>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Home</title>
+    <title>Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -70,7 +70,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <?php
-							$type=$_COOKIE['userType'];
+							$type = $_COOKIE['userType'];
                             if($type == "Undergraduate"){
                                 echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";
                                 echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
@@ -138,11 +138,6 @@
                                 <a href="viewprofile.php">Profile</a>
                             </li>
                             <li role="presentation" class="divider"></li>
-							<li>
-                                <a href="changepasswordform.php">Change Password</a>
-                            </li>
-                            
-                            <li role="presentation" class="divider"></li>
                             <li>
                                 <a href="../welcome.html">Logout</a>
                             </li>
@@ -157,7 +152,7 @@
         </div>
         <!-- /.container -->
     </nav>
-	
+	<div>
 	<?php 
 	
 	//$name=$_COOKIE["username"];
@@ -418,7 +413,8 @@
 		echo "</div>";
 		echo "</div>";
 		
-		
+		echo "<br>";
+            echo "<li> <a href='editProfileLec.php'>Edit profile</a> </p></li> ";
 		
 		}
 		
@@ -466,7 +462,8 @@
 		echo "</div>";
 		echo "</div>";
 		
-		
+		echo "<br>";
+        echo "<ul><li> <a href='editProfileEmp.php'>Edit profile</a> </p></li> ";
 		
 		}
 		
@@ -519,6 +516,9 @@
 		echo "</ul>";
 		echo "</div>";
 		echo "</div>";
+		
+		echo "<br>";
+            echo "<li> <a href='editProfileRecentGrad.php'>Edit profile</a> </p></li> ";
 		}
 		
 		else{
@@ -551,6 +551,7 @@
                 </div>
             </div>
         </footer>
+		</div>
 
     </div>
     <!-- /.container -->

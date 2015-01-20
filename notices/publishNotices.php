@@ -103,6 +103,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <?php
+							$type = $_COOKIE["userType"];
 							if($userType == "Undergraduate"){
                                 echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";
 								echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
@@ -111,8 +112,12 @@
 								echo "<li><a href='../message/systemAdminMessage.php'>System Administraror</a></li>";	
 							}
 							
-							else if($userType=="Administrator"){
-								header("Location:Administrator.php");
+							else if($type=="Administrator"){
+								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								
+								echo "<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>";
+								echo "<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li>";
+                                echo "<li><a href='../message/employeeMessage.php'>Employee</a></li>";
+                                echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
 							}
 							else if($userType == "Lecturer"){															
 								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								

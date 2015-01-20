@@ -4,21 +4,14 @@
 	$sql = "SELECT * FROM student";
 	$result = mysqli_query($connect,$sql) or die(mysqli_error($connect));
 	/*echo "<table width='60%'><form action='messageAction.php' method='post'>";
-	while($row=mysqli_fetch_row($result)){
-		$sql="SELECT national_id_number where "
-	}
 	while($row = mysqli_fetch_row($result)){
 		echo "<tr>";
-		echo $row[3];
 		echo "<td> $row[0] .$row[1].$row[2]</td><td><button type='submit' name='receiver' value=$row[3]>Message</button></td>";
 	}
 	
 	
 	echo "</form></table>";
 	mysqli_close($connect);*/
-	
-	
-	
 ?>
 
 <html lang="en">

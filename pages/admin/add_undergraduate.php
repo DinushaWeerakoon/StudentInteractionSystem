@@ -2,9 +2,9 @@
 
 	if(isset($_POST["submit"])) 
 	{ 
-	require_once("../../class/Undergraduate.php");
-	$new_user= new Undergraduate;
-	$new_user->completeDataSheet();
+		require_once("../../class/Undergraduate.php");
+		$new_user= new Undergraduate;
+		$new_user->completeDataSheet();
 	}
 ?>
 
@@ -12,150 +12,270 @@
 	<head>
 		<title>Add Undergraduate</title>
 		<script language="JavaScript">
+		function checkEmail(t){
+			var atpos = t.indexOf("@");
+			var dotpos = t.lastIndexOf(".");
+			if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=t.length || t.indexOf(".com",t.length-4) != t.length-4){
+				return 1;
+			}
+			//if()
+			return 0;
+		}
+		function sizeP(t){
+			s = t.length;
+			if(s>=5 && s<=10){
+				return 0; 
+			}
+			return 1;
+		}
+		function checkEng(t){
+			for(var i=0; i<t.length; i++){
+				var char1 = t.charAt(i);
+				var cc = char1.charCodeAt(0);
+
+				if((cc>64 && cc<91) || (cc>96 && cc<123))
+				{}
+				else {
+					return 1;
+					}
+				}
+			return 0;     
+			}
+			
+		function checkEngNum(t){
+			for(var i=0; i<t.length; i++){
+				var char1 = t.charAt(i);
+				var cc = char1.charCodeAt(0);
+
+				if((cc>47 && cc<58) || (cc>64 && cc<91) || (cc>96 && cc<123))
+				{}
+				else {
+					return 1;
+					}
+				}
+			return 0;     
+			}
+		
+		function checkNum(t){
+			for(var i=0; i<t.length; i++){
+				var char1 = t.charAt(i);
+				var cc = char1.charCodeAt(0);
+
+				if(cc>47 && cc<58)
+				{}
+				else {
+					return 1;
+					}
+				}
+			return 0;     
+			}
+			
+		function checkEmp(t){
+			if(t.trim()==''){
+				return 1;
+			}
+			return 0;
+		}
+		
+		function sizeStr(t,y){
+			if(t.length!=y){
+				return 1;
+			}
+			return 0;
+		}
+		
+		
 		function validateForm(){
-			
-			if(document.datasheet.firstName.value=='')
+			//first name checking
+			k = document.datasheet.firstName.value;
+			if(checkEmp(k) || checkEng(k))
 			{
-			window.alert("Enter the first name");
+				window.alert('Inputted First name is not alphanumeric');
+				return false;
+			}
+			k = document.datasheet.surname.value;
+			if(checkEmp(k) || checkEng(k))
+			{
+				window.alert("Inputted surname is not alphanumeric");
+				return false;
+			}
+			
+			k = document.datasheet.middleName.value;
+			if(checkEng(k))
+			{
+				window.alert("Inputted middle name is not alphanumeric");
+				return false;
+			}
+			
+			k = document.datasheet.regNo.value;
+			if(checkEngNum(k) || checkEmp(k) || sizeStr(k,9))
+			{
+				window.alert("Registration Number is not Valid");
+				return false;
+			}
+			k = document.datasheet.nic.value;
+			if(checkEmp(k) || checkNum(k) || sizeStr(k,9))
+			{
+				window.alert("NIC number is Invalid");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.school.value))
+			{
+				window.alert("Enter the school");
+				return false;
+			}
+			
+			k = document.datasheet.tpHome.value;
+			if(checkNum(k) || (sizeStr(k,10) && k.trim().length!=0))
+			{
+				window.alert("Invalid Telephone Number (Home)");
+				return false;
+			}
+			
+			k = document.datasheet.tpMobile.value;
+			if(checkEmp(k) || checkNum(k) || sizeStr(k,10))
+			{
+				window.alert("Invalid Telephone Number (Mobile)");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.permanentAddress.value))
+			{
+				window.alert("Enter the permenent address");
+				return false;
+			}
+			
+			k = document.datasheet.email.value;
+			if(checkEmp(k) || checkEmail(k))
+			{
+				window.alert("Invalid Email Address");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.dob.value))
+			{
+				window.alert("Enter the Date of Birth");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.sex.value))
+			{
+				window.alert("choose the gender");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.degree.value))
+			{
+				window.alert("choose the degree");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.academicYear.value))
+			{
+				window.alert("choose the academic year");
+				return false;
+			}
+			
+			if(checkEmp(document.datasheet.ALstream.value))
+			{
+				window.alert("choose the Advanced level stream");
+				return false;
+			}
+			
+			k = document.datasheet.fatherName.value;
+			if(checkEmp(k) || checkEng(k))
+			{
+				window.alert("Enter the correct Name");
+				return false;
+			}
+			
+			k = document.datasheet.fatherOccupation.value;
+			if(checkEmp(k) || checkEng(k))
+			{
+				window.alert("Enter the correct Father's Occupation");
+				return false;
+			}
+			
+			k = document.datasheet.fatherContact.value;
+			if(checkNum(k) || (sizeStr(k,10) && k.trim().length!=0))
+			{
+				window.alert("Invalid Telephone Number (Father)");
+				return false;
+			}
+			
+			k = document.datasheet.motherName.value;
+			if(checkEmp(k) || checkEng(k))
+			{
+			window.alert("Enter the correct name");
 			return false;
 			}
 			
-			if(document.datasheet.surname.value=='')
+			k = document.datasheet.motherOccupation.value;
+			if(checkEmp(k) || checkEng(k))
 			{
-			window.alert("Enter the surname or last name");
+			window.alert("Enter the correct Mother's Occupation");
 			return false;
 			}
 			
-			if(document.datasheet.regNo.value=='')
+			k = document.datasheet.motherContact.value;
+			if(checkNum(k) || (sizeStr(k,10) && k.trim().length!=0))
 			{
-			window.alert("Enter the Registration Number");
-			return false;
+				window.alert("Invalid Telephone Number (Mother)");
+				return false;
 			}
 			
-			if(document.datasheet.nic.value=='')
-			{
-			window.alert("Enter the National ID number");
-			return false;
-			}
-			
-			if(document.datasheet.school.value=='')
-			{
-			window.alert("Enter the school");
-			return false;
-			}
-			
-			if(document.datasheet.tpMobile.value=='')
-			{
-			window.alert("Enter the mobile number");
-			return false;
-			}
-			
-			if(document.datasheet.permanentAddress.value=='')
-			{
-			window.alert("Enter the permenent address");
-			return false;
-			}
-			
-			if(document.datasheet.email.value=='')
-			{
-			window.alert("Enter the email address");
-			return false;
-			}
-			
-			if(document.datasheet.dob.value=='')
-			{
-			window.alert("Enter the Date of Birth");
-			return false;
-			}
-			
-			if(document.datasheet.sex.value=='')
-			{
-			window.alert("choose the gender");
-			return false;
-			}
-			
-			if(document.datasheet.degree.value=='')
-			{
-			window.alert("choose the degree");
-			return false;
-			}
-			
-			if(document.datasheet.academicYear.value=='')
-			{
-			window.alert("choose the academic year");
-			return false;
-			}
-			
-			if(document.datasheet.ALstream.value=='')
-			{
-			window.alert("choose the Advanced level stream");
-			return false;
-			}
-			
-			if(document.datasheet.fatherName.value=='')
-			{
-			window.alert("Enter the father name");
-			return false;
-			}
-			
-			if(document.datasheet.fatherOccupation.value=='')
-			{
-			window.alert("Enter the father's occupation");
-			return false;
-			}
-			
-			if(document.datasheet.motherName.value=='')
-			{
-			window.alert("Enter the mother name");
-			return false;
-			}
-			
-			if(document.datasheet.motherOccupation.value=='')
-			{
-			window.alert("Enter the mother's occupation");
-			return false;
-			}
-			
-			if(document.datasheet.guardianName.value=='')
+			k = document.datasheet.gurdianName.value;
+			if(checkEmp(k) || checkEng(k))
 			{
 			window.alert("Enter the guardian name");
 			return false;
 			}
 			
-			if(document.datasheet.guardianOccupation.value=='')
+			k = document.datasheet.gurdianOccupation.value;
+			if(checkEmp(k) || checkEng(k))
 			{
 			window.alert("Enter the guardian's occupation");
 			return false;
 			}
 			
-			if(document.datasheet.userName.value=='')
+			k = document.datasheet.guardianContact.value;
+			if(checkNum(k) || (sizeStr(k,10) && k.trim().length!=0))
 			{
-			window.alert("Enter the Username");
-			return false;
+				window.alert("Invalid Telephone Number (Gurdian)");
+				return false;
 			}
+			//change
+			k = document.datasheet.userName.value;
+			if(checkEmp(k) || checkNum(k) || sizeStr(k,9))
+			{
+				window.alert("Enter correct user Name (NIC)");
+				return false;
+			}
+			
 			
 			if(document.datasheet.nic.value!=document.datasheet.userName.value)
 			{
-			window.alert("username should be matched with the NIC Number");
-			return false;
+				window.alert("username should be matched with the NIC Number");
+				return false;
 			}
 			
-			if(document.datasheet.password.value=='')
+			if(checkEmp(document.datasheet.password.value) || sizeP(document.datasheet.password.value))
 			{
-			window.alert("Enter the Password");
-			return false;
+				window.alert("Enter the Password");
+				return false;
 			}
 			
-			if(document.datasheet.checkPassword.value=='')
+			if(checkEmp(document.datasheet.checkPassword.value))
 			{
-			window.alert("Re-enter the password to confirm");
-			return false;
+				window.alert("Re-enter the password to confirm");
+				return false;
 			}
 			
 			if(document.datasheet.password.value!=document.datasheet.checkPassword.value)
 			{
-			window.alert("Passwords mismatch!");
-			return false;
+				window.alert("Passwords mismatch!");
+				return false;
 			}
 			
 			
@@ -183,7 +303,7 @@
 				<table width="80%" align="center">
 				
 				<tr><td>First Name</td><td>	:	<input type="text" name="firstName" size="60" ><span class="error">* </span></td></tr>
-				<tr><td>Middle Name</td><td>	:	<input type="text" name="middleName" size="60" ></td></tr>
+				<tr><td>Middle Name</td><td>	:	<input type="text" name="middleName" size="60" value=""></td></tr>
 				<tr><td>Surname</td><td>		: <input type="text" name="surname" size="60" ><span class="error">* </span></td></tr>
 				<tr><td>Registration Number</td><td>		: <input type="text" name="regNo" size="60" ><span class="error">* </span></td></tr>
 				<tr><td>NIC number</td><td>		: <input type="text" name="nic" size="60" ><span class="error">* </span></td></tr>
@@ -318,6 +438,10 @@
 			<br><br>
 			
 			<input type="submit" value="submit" name="submit" onclick="return validateForm();">
+			
+			<input type="reset" value="Reset" name="reset">
 		</form>
+		
+		<a href="../page.php">Return To Home</a>
 	</body>
 </html>

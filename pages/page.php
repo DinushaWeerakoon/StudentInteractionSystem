@@ -151,7 +151,7 @@
                             
                             <li role="presentation" class="divider"></li>
                             <li>
-                                <a href="../welcome.html">Logout</a>
+                                <a href="../logout.php">Logout</a>
                             </li>
                             
                         </ul>

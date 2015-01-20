@@ -96,8 +96,12 @@
                             }
                             
                             else if($type=="Administrator"){
-                                header("Location:Administrator.php");
-                            }
+								echo "<li><a href='../message/lecturerMessage.php'>Lecturer</a></li>";								
+								echo "<li><a href='../message/recentGraduateMessage.php'>Recent Graduate</a></li>";
+								echo "<li><a href='../message/underGraduateMessage.php'>Undergraduate</a></li>";
+                                echo "<li><a href='../message/employeeMessage.php'>Employee</a></li>";
+                                echo "<li><a href='../message/studentCounselorMessage.php'>Student Counsellor</a></li>";
+							}
                             else if($type == "Lecturer"){                                                           
                                 echo "<li><a href='lecturerMessage.php'>Lecturer</a></li>";                              
                                 echo "<li><a href='recentGraduateMessage.php'>Recent Graduate</a></li>";

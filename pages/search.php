@@ -31,6 +31,20 @@
 	<script language="JavaScript">
 		function validateForm(){
 		
+			/*if(document.sportlist.sport.value=='' || document.societylist.society.value=='' || document.companylist.company.value==''){
+			window.alert("Enter the particular search button");
+			return false;	
+			}
+			
+			else if(document.societylist.society.value==''){
+			window.alert("Enter the society");
+			return false;	
+			}
+			
+			else if(document.companylist.company.value==''){
+			window.alert("Enter the company");
+			return false;	
+			}*/
 			if(document.sportlist.sport.value=='' && document.societylist.society.value=='' && document.companylist.company.value=='')
 			{
 			window.alert("Enter the sport or society or company");
